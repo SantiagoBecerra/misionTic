@@ -10,4 +10,3 @@ def CDT(user: str,capital: int,time: int):
         return response
     else:
         print('Porfavor digite los valores correctamente')
-        
