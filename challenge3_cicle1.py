@@ -9,12 +9,13 @@ def AutoPartes(ventas: list):
             tuple[4],
             tuple[5],
             tuple[6],
-            tuple[7],
+            tuple[7]
         )
     return dicVentas
+
+
 def consultaRegistro(ventas, idProducto):
-    notIn = True
-    strRes = ""
+    notIn, strRes = True, ""
     for numventa, id in ventas.items():
         if id[0] == idProducto:
             strRes += "Producto consultado : {}  Descripción  {}  #Parte  {}  Cantidad vendida  {}  Stock  {}  Comprador {}  Documento  {}  Fecha Venta  {} \n".format(

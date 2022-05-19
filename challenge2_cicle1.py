@@ -1,9 +1,8 @@
 def cliente(data: dict) -> dict:
-    dicAttract = {}
+    dicAttract, dicRes = {},{}
     dicAttract["X-Treme"] = 20000
     dicAttract["Carros chocones"] = 5000
     dicAttract["Sillas voladoras"] = 10000
-    dicRes = {}
     dicRes["nombre"] = data["nombre"]
     dicRes["edad"] = data["edad"]
     if data["edad"] > 18:
@@ -11,9 +10,7 @@ def cliente(data: dict) -> dict:
         dicRes["apto"] = True
         dicRes["primer_ingreso"] = data["primer_ingreso"]
         if data["primer_ingreso"] == True:
-            dicRes["total_boleta"] = (
-                dicAttract["X-Treme"] - dicAttract["X-Treme"] * 0.05
-            )
+            dicRes["total_boleta"] = (dicAttract["X-Treme"] - dicAttract["X-Treme"] * 0.05)
             data["primer_ingreso"] = False
         else:
             dicRes["total_boleta"] = dicAttract["X-Treme"]
@@ -22,9 +19,7 @@ def cliente(data: dict) -> dict:
         dicRes["apto"] = True
         dicRes["primer_ingreso"] = data["primer_ingreso"]
         if data["primer_ingreso"] == True:
-            dicRes["total_boleta"] = (
-                dicAttract["Carros chocones"] - dicAttract["Carros chocones"] * 0.07
-            )
+            dicRes["total_boleta"] = (dicAttract["Carros chocones"] - dicAttract["Carros chocones"] * 0.07)
             data["primer_ingreso"] = False
         else:
             dicRes["total_boleta"] = dicAttract["Carros chocones"]
@@ -33,9 +28,7 @@ def cliente(data: dict) -> dict:
         dicRes["apto"] = True
         dicRes["primer_ingreso"] = data["primer_ingreso"]
         if data["primer_ingreso"] == True:
-            dicRes["total_boleta"] = (
-                dicAttract["Sillas voladoras"] - dicAttract["Sillas voladoras"] * 0.05
-            )
+            dicRes["total_boleta"] = (dicAttract["Sillas voladoras"] - dicAttract["Sillas voladoras"] * 0.05)
             data["primer_ingreso"] = False
         else:
             dicRes["total_boleta"] = dicAttract["Sillas voladoras"]
