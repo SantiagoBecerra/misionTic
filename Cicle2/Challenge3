@@ -1,5 +1,7 @@
 1. SELECT ID_MaterialConstruccion  AS ID, Nombre_Material AS NOMBRE, Precio_Unidad AS PRECIO
-FROM MaterialConstruccion   ORDER BY (Nombre_Material) LIMIT (10)
+ FROM MaterialConstruccion
+ WHERE Importado = 'Si'
+ ORDER BY Nombre_Material LIMIT 10
 2. SELECT p.ID_Proyecto ID, p.Constructora , p.Ciudad  ,p.Clasificacion ,t.Estrato, l.Nombre ||' '|| l.Primer_Apellido || ' ' || l.Segundo_Apellido 
 FROM Proyecto p ,Lider l,Tipo t
 WHERE p.ID_Lider = l.ID_Lider 
