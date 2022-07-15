@@ -1,0 +1,29 @@
+1. SELECT ID_MaterialConstruccion  AS ID, Nombre_Material AS NOMBRE, Precio_Unidad AS PRECIO
+FROM MaterialConstruccion   ORDER BY (Nombre_Material) LIMIT (10)
+2. SELECT p.ID_Proyecto ID, p.Constructora , p.Ciudad  ,p.Clasificacion ,t.Estrato, l.Nombre ||' '|| l.Primer_Apellido || ' ' || l.Segundo_Apellido 
+FROM Proyecto p ,Lider l,Tipo t
+WHERE p.ID_Lider = l.ID_Lider 
+AND p.ID_Tipo = t.ID_Tipo 
+AND p.Banco_Vinculado = 'Conavi'
+ORDER BY p.Fecha_Inicio DESC ,p.Ciudad,p.Constructora
+3. SELECT Ciudad , Clasificacion , COUNT(ID_Proyecto) TOTAL, MIN(Fecha_Inicio) VIEJO, MAX(Fecha_Inicio) RECIENTE
+FROM Proyecto
+GROUP BY Ciudad ,Clasificacion 
+ORDER BY Ciudad ,Clasificacion
+4. SELECT p.ID_Proyecto,SUM(c.Cantidad*mc.Precio_Unidad) AS VALOR
+FROM Compra c ,Proyecto p , MaterialConstruccion mc
+WHERE c.ID_Proyecto = p.ID_Proyecto 
+AND c.ID_MaterialConstruccion = mc.ID_MaterialConstruccion 
+AND c.Pagado = 'No'
+GROUP BY p.ID_Proyecto
+HAVING SUM(c.Cantidad*mc.Precio_Unidad) > 50000
+ORDER BY SUM(c.Cantidad*mc.Precio_Unidad) DESC
+5. SELECT l.Nombre ||' '|| l.Primer_Apellido || ' ' || l.Segundo_Apellido LIDER, SUM(c.Cantidad*mc.Precio_Unidad) VALOR
+FROM Proyecto p , Lider l , Compra c, MaterialConstruccion mc  
+WHERE c.ID_Proyecto = p.ID_Proyecto 
+AND p.ID_Lider  = l.ID_Lider 
+AND c.ID_MaterialConstruccion = mc.ID_MaterialConstruccion 
+GROUP BY l.ID_Lider 
+ORDER BY SUM(c.Cantidad*mc.Precio_Unidad) DESC 
+LIMIT 10
+
