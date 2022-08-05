@@ -10,6 +10,7 @@ AND p.Banco_Vinculado = 'Conavi'
 ORDER BY p.Fecha_Inicio DESC ,p.Ciudad,p.Constructora
 3. SELECT Ciudad , Clasificacion , COUNT(ID_Proyecto) TOTAL, MIN(Fecha_Inicio) VIEJO, MAX(Fecha_Inicio) RECIENTE
 FROM Proyecto
+WHERE Clasificacion NOT IN ('Casa Campestre','Condominio')
 GROUP BY Ciudad ,Clasificacion 
 ORDER BY Ciudad ,Clasificacion
 4. SELECT p.ID_Proyecto,SUM(c.Cantidad*mc.Precio_Unidad) AS VALOR
@@ -20,12 +21,11 @@ AND c.Pagado = 'No'
 GROUP BY p.ID_Proyecto
 HAVING SUM(c.Cantidad*mc.Precio_Unidad) > 50000
 ORDER BY SUM(c.Cantidad*mc.Precio_Unidad) DESC
-5. SELECT l.Nombre ||' '|| l.Primer_Apellido || ' ' || l.Segundo_Apellido LIDER, SUM(c.Cantidad*mc.Precio_Unidad) VALOR
+5. SELECT l.Nombre ||' '|| l.Primer_Apellido || ' ' || l.Segundo_Apellido LIDER,  SUM(c.Cantidad*mc.Precio_Unidad) VALOR
 FROM Proyecto p , Lider l , Compra c, MaterialConstruccion mc  
 WHERE c.ID_Proyecto = p.ID_Proyecto 
 AND p.ID_Lider  = l.ID_Lider 
 AND c.ID_MaterialConstruccion = mc.ID_MaterialConstruccion 
-GROUP BY l.ID_Lider 
+GROUP BY LIDER  
 ORDER BY SUM(c.Cantidad*mc.Precio_Unidad) DESC 
-LIMIT 10
 
