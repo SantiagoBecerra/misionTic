@@ -20,12 +20,15 @@ public class ReportesController {
         deudasPorProyectoDao = new DeudasPorProyectoDao();
         proyectoBancoDao = new ProyectoBancoDao();
     }
+
     public ArrayList<ComprasDeLiderVo> leaderMostSpend() throws SQLException {
         return comprasDeLiderDao.leaderMostSpend();
     }
+
     public ArrayList<DeudasPorProyectoVo> listByLimit(double limit) throws SQLException {
         return deudasPorProyectoDao.listByLimit(limit);
     }
+
     public ArrayList<ProyectoBancoVo> findByBank(String bank) throws SQLException {
         return proyectoBancoDao.findByBank(bank);
     }
